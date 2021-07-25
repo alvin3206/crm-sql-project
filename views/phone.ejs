@@ -1,0 +1,36 @@
+<%- include("partials/header"); -%>
+
+<div class="my-5">
+
+</div>
+<h3><a href="/user/edit/<%=contact[0].Contact_id%>"><%=contact[0].Fname%> <%=contact[0].Mname%> <%=contact[0].Lname%></a></h3>
+
+<div class="mt-4 table-responsive">
+  <table id="phone_table" class="display">
+    <!-- <table id="" class="table table-striped table-hover table-bordered table-sm"> -->
+
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Phone Type</th>
+        <th scope="col">Area code</th>
+        <th scope="col">Number</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% data.forEach(function(element) { %>
+      <tr>
+        <td><%= element.Phone_type %></td>
+        <td><%= element.Area_code %></td>
+        <td><%= element.Number %></td>
+        <td><a href="/user/edit/<%=element.Contact_id%>">Edit</a></td>
+        <td><a href="/phone/delete/<%=element.Phone_id%>">Delete</a></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("partials/footer"); -%>

@@ -1,0 +1,179 @@
+<%- include("partials/header"); -%>
+
+<div class="my-5">
+
+</div>
+<h3><a href="/user/edit/<%=contact[0].Contact_id%>"><%=contact[0].Fname%> <%=contact[0].Mname%> <%=contact[0].Lname%></a><span class="badge badge-light">Edit</span></h3>
+
+<div class="my-4">
+
+  <h5 class="mt-5 mb-2">Name</h5>
+  <div class="row">
+    <label class="col">First Name</label>
+    <label class="col">Middle Name</label>
+    <label class="col">Last Name</label>
+    <label class="col-3"></label>
+  </div>
+  <% contact.forEach(function(contact) { %>
+  <form class="mb-2" action="/contact/edit/<%=contact.Contact_id%>" method="post">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" name="Fname" required="required" value="<%=contact.Fname%>">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="Mname" value="<%=contact.Mname%>">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="Lname" required="required" value="<%=contact.Lname%>">
+      </div>
+      <div class="col-3">
+        <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-danger" href="/user/delete/<%=contact.Contact_id%>" role="button">Delete</a>
+      </div>
+    </div>
+  </form>
+
+  <h5 class="mt-5 mb-2">Address</h5>
+  <div class="row">
+    <label class="col">Address Type</label>
+    <label class="col-4">Address</label>
+    <label class="col">City</label>
+    <label class="col">State</label>
+    <label class="col">Zip</label>
+    <label class="col-3"></label>
+  </div>
+  <% address.forEach(function(address) { %>
+  <form class="mb-2" action="/address/edit/<%=address.Address_id%>" method="post">
+    <div class="row mb-2">
+      <div class="col">
+        <input type="text" class="form-control" name="Address_type" required="required" value="<%=address.Address_type%>">
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" name="Address" value="<%=address.Address%>">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="City" value="<%=address.City%>">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="State" value="<%=address.State%>">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="Zip" value="<%=address.Zip%>" pattern="[0-9]{5}">
+      </div>
+      <div class="col-3">
+        <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-danger" href="/address/delete/<%=address.Address_id%>" role="button">Delete</a>
+      </div>
+    </div>
+  </form>
+  <% }); %>
+  <form action="/address/create/<%=contact.Contact_id%>" method="post">
+    <div class="row mb-2">
+      <div class="col">
+        <input type="text" class="form-control" name="Address_type" required="required">
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" name="Address">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="City">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="State">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="Zip" pattern="[0-9]{5}">
+      </div>
+      <div class="col-3">
+        <button type="submit" class="btn btn-success">Create</button>
+      </div>
+    </div>
+  </form>
+
+  <h5 class="mt-5 mb-2">Phone</h5>
+  <div class="row">
+    <label class="col">Phone Type</label>
+    <label class="col">Area Code</label>
+    <label class="col">Number</label>
+    <label class="col-2"></label>
+  </div>
+  <% phone.forEach(function(phone) { %>
+  <form class="mb-2" action="/phone/edit/<%=phone.Phone_id%>" method="post">
+    <div class="row mb-2">
+      <div class="col">
+        <input type="text" class="form-control" name="Phone_type" required="required" value="<%=phone.Phone_type%>">
+      </div>
+      <div class="col">
+        <input type="tel" class="form-control" name="Area_code" required="required" value="<%=phone.Area_code%>" pattern="[0-9]{3}">
+      </div>
+      <div class="col">
+        <input type="tel" class="form-control" name="Number" required="required" value="<%=phone.Number%>" pattern="[0-9]{7}">
+      </div>
+      <div class="col-3">
+        <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-danger" href="/phone/delete/<%=phone.Phone_id%>" role="button">Delete</a>
+      </div>
+    </div>
+  </form>
+  <% }); %>
+  <form action="/phone/create/<%=contact.Contact_id%>" method="post">
+    <div class="row mb-2">
+      <div class="col">
+        <input type="text" class="form-control" name="Phone_type" required="required">
+      </div>
+      <div class="col">
+        <input type="tel" class="form-control" name="Area_code" required="required" pattern="[0-9]{3}">
+      </div>
+      <div class="col">
+        <input type="tel" class="form-control" name="Number" required="required" pattern="[0-9]{7}">
+      </div>
+      <div class="col-3">
+        <button type="submit" class="btn btn-success">Create</button>
+      </div>
+    </div>
+  </form>
+
+  <h5 class="mt-5 mb-2">Date</h5>
+  <div class="row">
+    <label class="col">Date Type</label>
+    <label class="col">Date</label>
+    <label class="col-3"></label>
+  </div>
+  <% date.forEach(function(date) { %>
+  <form class="mb-2" action="/date/edit/<%=date.Date_id%>" method="post">
+    <div class="row mb-2">
+      <div class="col">
+        <input type="text" class="form-control" name="Date_type" value="<%=date.Date_type%>">
+      </div>
+      <div class="col">
+        <input type="date" class="form-control" name="Date" id="date" required="required" value="<%=date.Date%>">
+      </div>
+      <div class="col-3">
+        <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-danger" href="/date/delete/<%=date.Date_id%>" role="button">Delete</a>
+      </div>
+    </div>
+  </form>
+  <% }); %>
+  <form action="/date/create/<%=contact.Contact_id%>" method="post">
+    <div class="row mb-2">
+      <div class="col">
+        <input type="text" class="form-control" name="Date_type">
+      </div>
+      <div class="col">
+        <input type="date" class="form-control" name="Date" id="date" required="required">
+      </div>
+      <div class="col-3">
+        <button type="submit" class="btn btn-success">Create</button>
+      </div>
+    </div>
+  </form>
+
+  <% }); %>
+</div>
+
+<%- include("partials/footer"); -%>

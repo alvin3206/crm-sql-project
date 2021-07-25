@@ -1,0 +1,51 @@
+<%- include("partials/header"); -%>
+
+<div class="my-4 row">
+  <a class="btn btn-primary mx-4" href="/user/create" role="button">Add New Contact</a>
+</div>
+
+<div class="table-responsive">
+  <table id="main_table" class="display">
+    <!-- <table id="" class="table table-striped table-hover table-bordered table-sm"> -->
+
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Middle Name</th>
+        <th scope="col">Lase Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Date</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% data.forEach(function(element) { %>
+      <tr>
+        <td><%= element.Contact_id %></td>
+        <td><%= element.Fname %></td>
+        <td><%= element.Mname %></td>
+        <td><%= element.Lname %></td>
+        <td><a href="/user/address/<%=element.Contact_id%>">Address</a></td>
+        <td><a href="/user/phone/<%=element.Contact_id%>">Phone</a></td>
+        <td><a href="/user/date/<%=element.Contact_id%>">Date</a></td>
+        <td><a href="/user/edit/<%=element.Contact_id%>">Edit</a></td>
+        <td><a href="/user/delete/<%=element.Contact_id%>">Delete</a></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+
+<div class="alert alert-info alert-dismissible fade show fixed-bottom mb-0 sticky-alert text-center" role="alert">
+  You must agree to the terms of use. This website is only for illustrative purposes, not for commercial or other uses. If you disagree, please leave the site.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+<%- include("partials/footer"); -%>

@@ -1,0 +1,35 @@
+<%- include("partials/header"); -%>
+
+<div class="my-5">
+
+</div>
+<h3>New Contact - <span class="badge badge-light">Create</span></h3>
+
+<div class="my-4">
+
+  <h5 class="mt-5 mb-2">Name</h5>
+  <div class="row">
+    <label class="col">First Name</label>
+    <label class="col">Middle Name</label>
+    <label class="col">Last Name</label>
+    <label class="col-3"></label>
+  </div>
+  <form action="/user/create" method="post">
+    <div class="row mb-2">
+      <div class="col">
+        <input type="text" class="form-control" name="Fname" required="required">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="Mname">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="Lname" required="required">
+      </div>
+      <div class="col-3">
+        <button type="submit" class="btn btn-success">Create</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<%- include("partials/footer"); -%>
