@@ -14,13 +14,29 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
-// Connect to db
-const connection = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  database: ''
-});
+// Connect to db and fix the close connection issue
+let connection = '';
+function handleDisconnection() {
+  connection = mysql.createConnection({
+    host: '',
+    user: '',
+    password: '',
+    database: ''
+  })
+  connection.connect(function(err) {
+    if (err) {
+      setTimeout('handleDisconnection()', 2000);
+    }
+  });
+  connection.on('error', function(err) {
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+      handleDisconnection();
+    } else {
+      throw err;
+    }
+  });
+}
+handleDisconnection();
 
 app.get("/", function(req, res) {
   connection.query('SELECT * FROM CONTACT', function(err, rows, fields) {
